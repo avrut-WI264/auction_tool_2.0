@@ -1,5 +1,6 @@
-package com.wissen.auction.security;
+package com.wissen.auction.config;
 
+import com.wissen.auction.security.CityValidationInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

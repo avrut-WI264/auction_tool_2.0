@@ -1,5 +1,7 @@
-package com.wissen.auction.auth;
+package com.wissen.auction.user;
 
+import com.wissen.auction.auth.AuthenticatedAccount;
+import com.wissen.auction.auth.CityAccessService;
 import com.wissen.auction.team.Team;
 import com.wissen.auction.team.TeamRepository;
 import lombok.RequiredArgsConstructor;

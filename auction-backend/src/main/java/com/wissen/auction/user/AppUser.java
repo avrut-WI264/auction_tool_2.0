@@ -1,5 +1,6 @@
-package com.wissen.auction.auth;
+package com.wissen.auction.user;
 
+import com.wissen.auction.bootstrap.DataInitializer;
 import jakarta.persistence.*;
 import lombok.*;
 

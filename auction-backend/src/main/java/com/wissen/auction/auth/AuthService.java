@@ -1,6 +1,8 @@
 package com.wissen.auction.auth;
 
 import com.wissen.auction.security.JwtUtils;
+import com.wissen.auction.user.AppUser;
+import com.wissen.auction.user.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,5 +1,8 @@
 package com.wissen.auction.auth;
 
+import com.wissen.auction.user.AccountRole;
+import com.wissen.auction.user.AppUser;
+import com.wissen.auction.user.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

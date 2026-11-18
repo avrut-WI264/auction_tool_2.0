@@ -1,10 +1,10 @@
 package com.wissen.auction.ops;
 
-import com.wissen.auction.auction.domain.AuctionCity;
-import org.flywaydb.core.Flyway;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import java.sql.*;
 import java.nio.charset.StandardCharsets;
+import java.sql.*;
+
+import com.wissen.auction.auction.domain.AuctionCity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /** Explicit operator tool. Secrets are read from process environment, never CLI arguments. */
 public final class DatabaseTool {
@@ -12,8 +12,8 @@ public final class DatabaseTool {
 
     public static void main(String[] args) throws Exception {
         String operation = args.length == 1 ? args[0] : "";
-        if (!java.util.Set.of("migrate", "provision-admin").contains(operation)) {
-            throw new IllegalArgumentException("Expected migrate or provision-admin.");
+        if (!"provision-admin".equals(operation)) {
+            throw new IllegalArgumentException("Expected provision-admin.");
         }
         String url = required("SPRING_DATASOURCE_URL");
         String user = required("SPRING_DATASOURCE_USERNAME");
@@ -21,13 +21,6 @@ public final class DatabaseTool {
         String schema = required("APP_DATABASE_SCHEMA");
         if (!schema.matches("[a-z][a-z0-9_]{0,62}") || "public".equals(schema)) {
             throw new IllegalArgumentException("Use a dedicated application schema.");
-        }
-        Flyway flyway = Flyway.configure().dataSource(url, user, password).schemas(schema).defaultSchema(schema)
-                .baselineVersion("0").baselineOnMigrate("true".equals(System.getenv("APP_ALLOW_BASELINE_EXISTING"))).load();
-        flyway.migrate();
-        if ("migrate".equals(operation)) {
-            System.out.println("Application schema migrations completed.");
-            return;
         }
         String city = new AuctionCity(required("BOOTSTRAP_CITY")).value();
         String username = required("BOOTSTRAP_USERNAME");

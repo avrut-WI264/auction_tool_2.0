@@ -1,11 +1,11 @@
-package com.wissen.auction.common;
+package com.wissen.auction.bootstrap;
 
-import com.wissen.auction.auth.AppUser;
-import com.wissen.auction.auth.AppUserRepository;
 import com.wissen.auction.player.Player;
 import com.wissen.auction.player.PlayerRepository;
 import com.wissen.auction.team.Team;
 import com.wissen.auction.team.TeamRepository;
+import com.wissen.auction.user.AppUser;
+import com.wissen.auction.user.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;

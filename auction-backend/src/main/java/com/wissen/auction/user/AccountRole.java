@@ -1,4 +1,4 @@
-package com.wissen.auction.auth;
+package com.wissen.auction.user;
 
 import java.util.Arrays;
 

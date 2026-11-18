@@ -1,29 +1,33 @@
 package com.wissen.auction.auction;
 
-import tools.jackson.databind.*;
-import com.wissen.auction.auth.*;
-import com.wissen.auction.common.DataInitializer;
-import com.wissen.auction.player.*;
-import com.wissen.auction.team.*;
-import jakarta.servlet.http.Cookie;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.messaging.simp.stomp.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.*;
-import org.springframework.test.web.servlet.*;
-import org.springframework.web.socket.client.standard.StandardWebSocketClient;
-import org.springframework.web.socket.messaging.WebSocketStompClient;
-import org.springframework.messaging.converter.JacksonJsonMessageConverter;
 import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.*;
 import java.util.concurrent.*;
+
+import com.wissen.auction.auth.*;
+import com.wissen.auction.bootstrap.DataInitializer;
+import com.wissen.auction.player.*;
+import com.wissen.auction.team.*;
+import com.wissen.auction.user.AppUser;
+import com.wissen.auction.user.AppUserRepository;
+import jakarta.servlet.http.Cookie;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.messaging.converter.JacksonJsonMessageConverter;
+import org.springframework.messaging.simp.stomp.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.*;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.*;
+import org.springframework.web.socket.client.standard.StandardWebSocketClient;
+import org.springframework.web.socket.messaging.WebSocketStompClient;
+import tools.jackson.databind.*;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -32,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {"spring.jpa.show-sql=false", "spring.jpa.hibernate.ddl-auto=create-drop",
                 "app.jwt.secret=test-only-secret-for-owner-auction-integration-012345678901234567890",
-                "spring.flyway.enabled=false", "app.cookie.secure=false", "app.allowed.origins=http://localhost:5173"})
+                "app.cookie.secure=false", "app.allowed.origins=http://localhost:5173"})
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @org.springframework.test.annotation.DirtiesContext(classMode = org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_CLASS)
@@ -311,7 +315,6 @@ class LiveAuctionIntegrationTest {
         properties.put("spring.datasource.url", base + (base.contains("?") ? "&" : "?") + "currentSchema=" + SCHEMA);
         properties.put("spring.datasource.username", System.getenv("TEST_POSTGRES_USER"));
         properties.put("spring.datasource.password", System.getenv("TEST_POSTGRES_PASSWORD"));
-        properties.put("spring.flyway.enabled", "false");
         properties.put("spring.jpa.hibernate.ddl-auto", "validate");
         properties.put("spring.jpa.show-sql", "false");
         properties.put("app.jwt.secret", "test-only-secret-for-owner-auction-integration-012345678901234567890");

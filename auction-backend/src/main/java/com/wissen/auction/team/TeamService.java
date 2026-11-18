@@ -1,18 +1,18 @@
 package com.wissen.auction.team;
 
-import lombok.RequiredArgsConstructor;
-import org.hibernate.Hibernate;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.wissen.auction.auction.BidLog;
 import com.wissen.auction.auction.BidLogRepository;
 import com.wissen.auction.player.Player;
 import com.wissen.auction.player.PlayerDTO;
 import com.wissen.auction.player.PlayerRepository;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import com.wissen.auction.user.AppUserRepository;
+import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * TeamService – all business logic for franchise team management.
@@ -28,7 +28,7 @@ public class TeamService {
     private final com.wissen.auction.auction.application.CatalogWriteGuard writes;
     private final PlayerRepository playerRepository;
     private final BidLogRepository bidLogRepository;
-    private final com.wissen.auction.auth.AppUserRepository userRepository;
+    private final AppUserRepository userRepository;
 
     // ---- READ ----
 

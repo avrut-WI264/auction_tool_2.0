@@ -1,5 +1,7 @@
 package com.wissen.auction.auth;
 
+import com.wissen.auction.user.AccountRole;
+
 /** Authorization data without credentials or a mutable persistence entity. */
 public record AuthenticatedAccount(String username, String city, AccountRole role, Long teamId) {
     public Long biddingTeam(Long requestedTeamId) {

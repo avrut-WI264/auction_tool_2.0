@@ -1,9 +1,8 @@
 param(
-    [Parameter(Mandatory=$true)][ValidateSet('migrate','provision-admin')][string]$Operation,
+    [Parameter(Mandatory=$true)][ValidateSet('provision-admin')][string]$Operation,
     [string]$EnvFile = (Join-Path $PSScriptRoot '../.env'),
     [string]$City,
     [string]$Username,
-    [switch]$BaselineExisting,
     [switch]$AllowReset
 )
 $ErrorActionPreference = 'Stop'
@@ -20,7 +19,6 @@ try {
             }
         }
     }
-    Set-TaskVariable 'APP_ALLOW_BASELINE_EXISTING' $BaselineExisting.IsPresent.ToString().ToLowerInvariant()
     if ($Operation -eq 'provision-admin') {
         if (-not $City -or -not $Username) { throw 'City and Username are required.' }
         Set-TaskVariable 'BOOTSTRAP_CITY' $City

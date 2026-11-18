@@ -1,10 +1,11 @@
-package com.wissen.auction.common;
+package com.wissen.auction.auction;
+
+import java.util.Map;
 
 import com.wissen.auction.auction.LiveAuctionRepository;
 import com.wissen.auction.auction.domain.AuctionCity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/{city}")

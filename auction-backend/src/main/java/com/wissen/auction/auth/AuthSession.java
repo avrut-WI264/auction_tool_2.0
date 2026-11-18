@@ -1,8 +1,10 @@
 package com.wissen.auction.auth;
 
+import java.time.Instant;
+
+import com.wissen.auction.user.AppUser;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.Instant;
 
 @Entity
 @Table(name = "auth_sessions")

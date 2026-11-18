@@ -10,4 +10,4 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE
   :"schema".bid_logs, :"schema".live_auctions, :"schema".auction_events
 TO :"runtime_role";
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA :"schema" TO :"runtime_role";
--- No CREATE, schema ownership, or write access to flyway_schema_history is granted.
+-- No CREATE or schema ownership is granted.

@@ -1,10 +1,12 @@
-package com.wissen.auction.common;
+package com.wissen.auction.bootstrap;
 
-import com.wissen.auction.auth.AppUser;
-import com.wissen.auction.auth.AppUserRepository;
+import java.util.List;
+
+import com.wissen.auction.user.AppUser;
+import com.wissen.auction.user.AppUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 

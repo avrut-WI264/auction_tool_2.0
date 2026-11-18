@@ -1,13 +1,13 @@
-package com.wissen.auction.common;
+package com.wissen.auction.bootstrap;
 
-import com.wissen.auction.auth.AppUserRepository;
+import java.net.URI;
+
+import com.wissen.auction.user.AppUserRepository;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import java.net.URI;
 
 /** Reject known development settings before accepting production traffic. */
 @Component @Profile("prod")
@@ -23,7 +23,7 @@ public class ProductionReadinessGuard implements org.springframework.beans.facto
     public ProductionReadinessGuard(AppUserRepository users, PasswordEncoder passwords,
             @Value("${app.cookie.secure}") boolean secure, @Value("${app.allowed.origins}") String origins,
             @Value("${spring.datasource.username}") String databaseUser,
-            @Value("${spring.flyway.default-schema}") String schema,
+            @Value("${app.database.schema}") String schema,
             @Value("${app.management.token:}") String metricsToken) {
         this.users = users;
         this.passwords = passwords;
