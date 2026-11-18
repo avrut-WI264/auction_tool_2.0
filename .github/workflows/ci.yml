@@ -1,0 +1,38 @@
+name: Verify
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: auction_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres -d auction_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: auction-frontend/package-lock.json
+      - run: mvn --batch-mode verify
+        working-directory: auction-backend
+        env:
+          TEST_POSTGRES_URL: jdbc:postgresql://localhost:5432/auction_test
+          TEST_POSTGRES_USER: postgres
+          TEST_POSTGRES_PASSWORD: ci-only-password
+      - run: npm ci && npm test && npm run build && npm audit --audit-level=moderate
+        working-directory: auction-frontend

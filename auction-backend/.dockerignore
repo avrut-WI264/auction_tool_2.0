@@ -1,0 +1,8 @@
+target
+target-verify
+schema-before-hardening.sql
+.git
+.gitignore
+.idea
+.vscode
+*.log

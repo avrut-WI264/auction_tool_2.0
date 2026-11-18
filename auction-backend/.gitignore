@@ -1,0 +1,26 @@
+target/
+target-verify/
+*.class
+*.jar
+*.war
+# Allow Maven Wrapper
+!.mvn/
+!.mvn/wrapper/
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+.idea/
+*.iml
+*.iws
+.DS_Store
+application-local.properties
+
+.env
+.env.local
+.env.production
+.env.development
+
+.vscode/
+new.txt
+recent.txt
+scratch_test_bids.js
+compile.log

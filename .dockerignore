@@ -1,0 +1,9 @@
+**/node_modules
+**/target
+**/target-verify
+.git
+.local-backups
+.env*
+**/*.log
+**/dependency-audit.json
+auction-backend/schema-before-hardening.sql

@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ../auction-backend
+    env_file: ${BACKEND_ENV_FILE:-../.env.production}
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    expose: ["8080", "8081"]
+    mem_limit: 1g
+    restart: unless-stopped
+    stop_grace_period: 35s
+  frontend:
+    build:
+      context: ..
+      dockerfile: deploy/frontend.Dockerfile
+    ports: ["127.0.0.1:8080:8080"]
+    depends_on: [backend]
+    restart: unless-stopped
